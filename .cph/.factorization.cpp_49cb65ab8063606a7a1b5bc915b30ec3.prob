@@ -1,0 +1,1 @@
+{"name":"Local: factorization","url":"d:\\code_and_study\\DUT\\Math_for_CS\\factorization.cpp","tests":[{"id":1736145119483,"input":"1000000\n1 1000","output":"No"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\code_and_study\\DUT\\Math_for_CS\\factorization.cpp","group":"local","local":true}
