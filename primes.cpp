@@ -56,14 +56,19 @@ void factorize(long long n,vector<long long>& p,vector<long long>& a){
 
 int div_count(long long n){
     long long sqr = sqrt(n);
-    int cnt = 0;
-    for (int i=1;i<=sqr;++i){
+    int result = 1;
+    for (int i=2;i<=sqr;++i){
         if (n%i==0){
-            if (n/i==i) cnt++;
-            else cnt+=2;
+            int cnt=0;
+            while(n%i==0){
+                cnt++;
+                n/=i;
+            }
+            result *= (cnt+1);
         }
     }
-    return cnt;
+    if (n>1)    result*=2;
+    return result;
 }
 
 vector<long long> get_div_list(long long n){
@@ -166,7 +171,7 @@ int main(){
     cout << "\nCau 2: \n";
     vector<long long>divList = get_div_list(n);
     long long divcount = div_count(n);
-    cout << "Tong so uoc cua " << n << " la: "<< divcount << '\n';
+    cout << "So luong uoc cua " << n << " la: "<< divcount << '\n';
     cout << "Danh sach cac uoc cua " << n <<" la: ";
     for (int i=0;i<divList.size();++i){
         cout << divList[i] << ' ';
