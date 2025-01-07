@@ -94,7 +94,6 @@ long long div_sum2(long long n){
     long long sum=1;
     int sz = p.size();
     for (int i=0;i<sz;++i){
-        cout << p[i] << ' ' << a[i] << '\n';
         sum = sum*((power(p[i],a[i]+1)-1)/(p[i]-1));
     }
     return sum;
@@ -168,7 +167,7 @@ int main(){
     vector<long long>divList = get_div_list(n);
     long long divcount = div_count(n);
     cout << "Tong so uoc cua " << n << " la: "<< divcount << '\n';
-    cout << "Danh sach cac uoc cua n: ";
+    cout << "Danh sach cac uoc cua " << n <<" la: ";
     for (int i=0;i<divList.size();++i){
         cout << divList[i] << ' ';
     }
