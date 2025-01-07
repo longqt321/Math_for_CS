@@ -119,7 +119,7 @@ int main(){
     vector<int>p,a;
     factorize(n,p,a);
     if (p.size() != a.size()){
-        cout << "Error:\n";
+        cout << "Error: Kich thuoc cua mang p va a khong giong nhau\n";
         exit(1);
     }
     int sz = p.size();
