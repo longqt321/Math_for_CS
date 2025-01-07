@@ -183,7 +183,7 @@ int main(){
     cout << "Tich cua cac uoc so la: "  << n << " la: " << divproduct  << '\n';
     cout << "Cau 5: \n";
     cout << "Ham check "<< n <<" co phai la so hoan hao truyen thong: " << (old_check_perfect(n) ? "YES\n" : "NO\n");
-    cout << "Ham check "<< n <<" co phai la so hoan hao truyen thong: " << (new_check_perfect(n) ? "YES\n" : "NO\n");
+    cout << "Ham check "<< n <<" co phai la so hoan hao theo cong thuc: " << (new_check_perfect(n) ? "YES\n" : "NO\n");
     cout << "Nhap L va R de tinh so luong so hoan hao trong doan [L,R]\n";
     long long l,r;
     cin >> l >> r;
