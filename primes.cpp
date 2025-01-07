@@ -4,7 +4,7 @@
 #include <string>
 using namespace std;
 
-string operator*(string a, string b){
+string operator*(const string& a,const string& b){
     int n = a.size();
     int m = b.size();
     if (a=="0"||b=="0") return "0";
@@ -24,10 +24,12 @@ string operator*(string a, string b){
     return (res.empty() ? "0" : res);
 }
 
+
+
 long long power(long long a,long long n){
     long long res = 1;
     while (n>0){
-        if (n%2==1) res *= a;
+        if (n%2!=0) res *= a;
         a *= a;
         n /= 2;
     }
@@ -77,12 +79,22 @@ vector<long long> get_div_list(long long n){
     return vt;
 }
 
-long long div_sum(long long n){
+long long div_sum1(long long n){
+    vector<long long>divList = get_div_list(n);
+    long long sum=0;
+    for (int i=0;i<divList.size();++i){
+        sum += divList[i];
+    }
+    return sum;
+}
+
+long long div_sum2(long long n){
     vector<long long>p,a;
     factorize(n,p,a);
     long long sum=1;
     int sz = p.size();
     for (int i=0;i<sz;++i){
+        cout << p[i] << ' ' << a[i] << '\n';
         sum = sum*((power(p[i],a[i]+1)-1)/(p[i]-1));
     }
     return sum;
@@ -110,7 +122,7 @@ bool old_check_perfect(long long n){
 }
 
 bool new_check_perfect(long long n){
-    return n == div_sum(n) - n;
+    return n == div_sum2(n) - n;
 }
 
 long long estimate_primes(long long n){
@@ -161,7 +173,7 @@ int main(){
         cout << divList[i] << ' ';
     }
     cout << "\nCau 3: \n";
-    cout << "Tong cua cac uoc so cua " << n << " la: " << div_sum(n) << '\n';
+    cout << "Tong cua cac uoc so cua " << n << " la: " << div_sum1(n) << '\n';
     cout << "Cau 4: \n";
     string divproduct = div_product(n);
     cout << "Tich cua cac uoc so la: "  << n << " la: " << divproduct  << '\n';
