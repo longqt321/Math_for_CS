@@ -24,7 +24,7 @@ Trong phần này, chúng ta sẽ tìm hiểu về một số thuật toán liê
 
     Không mất tính tổng quát, ta giả sử $a\leq b$, khi đó ta có $a\leq \sqrt{N}$ và $b \geq \sqrt{N} $. Dấu '=' xảy ra khi N là số chính phương.
 
-    Vì $a \leq \sqrt{N}$, nên nếu N không phải là số nguyên tố thì sẽ tồn tại 1 ước số p của N sao cho $p \leq N$. Vậy nên, ta chỉ cần xét các ước số của N từ 1->$\sqrt{N}$
+    Vì $a \leq \sqrt{N}$, nên nếu N không phải là số nguyên tố thì sẽ tồn tại 1 ước số p của N sao cho $p \leq N$. Vậy nên, ta chỉ cần xét các ước số của N từ 1 -> $\sqrt{N}$
 
     Từ ý tưởng trên. Dưới đây là hàm check số nguyên tố bằng C++.
 
