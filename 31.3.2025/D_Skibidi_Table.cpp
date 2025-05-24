@@ -1,0 +1,154 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <math.h>
+#include <queue>
+#include <stack>
+#include <set>
+#include <map>
+#include <unordered_map>
+#include <unordered_set>
+#include <functional>
+#include <string>
+#include <bitset>
+
+using namespace std;
+#define ll long long
+#define ld long double
+#define ii pair<ll,ll>
+#define iii pair<ll,ii>
+#define iiii pair<ii,ii>
+#define pb push_back 
+#define fi first 
+#define se second 
+#define log(a,b) ln(b)/ln(a)
+#define deb(x) cout << #x << " = " << x << '\n'
+
+const ll MOD = 1e9+7;
+const ll inf = 1e9+7;
+const ll N = 1e6+5;
+const ll BASE = 31;
+
+template <typename T,typename U>
+ostream& operator<<(ostream& os,const pair<T,U>& x){ //  operator<< for pair
+    os << '(' << x.fi << ',' << x.se << ')';
+    return os;
+}
+
+int lg2(const ll& x){return (x<=0 ? -1:63 - __builtin_clzll(x));}
+ll gcd(ll a,ll b){if (b==0) return a;return gcd(b,a%b);}
+ll lcm(ll a,ll b){return (a/gcd(a,b))*b;}
+ll tonum(const string& s){ll num=0;for (const char& x : s){if (x<'0'||x>'9') return -1;num = num*10 + x-'0';}return num;}
+void fill(ll a[],int  n,ll num){for (int i=0;i<=n;++i) a[i] = num;}
+bool betw(ll u,ll L,ll R){return (u>=L&&u<=R);}
+
+// bits manipulation
+void On(ll& n,const int& i){
+    n |= (1LL<<i);
+}
+void Off(ll& n,const int& i){
+    n &= ~(1LL<<i);
+}
+
+void Flip(ll& n,const int& i){
+    n ^= (1LL<<i);
+}
+bool Get(const ll& n,const int& i){
+    return n & (1LL<<i);
+}
+void print(const ll& n){ // Print binary of a number
+    if (n>1) print(n>>1);
+    cout << (n&1);
+}
+
+template <typename T>void setmax(T& x,const T& y){if(x<y)x=y;}
+template <typename T>void setmin(T& x,const T& y){if(x>y)x=y;}
+template <typename T> void print(const vector<T>& v){cout << "[";   int n = v.size()-1;for (const T& x : v){cout << x;  if (n>0)   cout << ',',n--;}cout << "]\n";}
+// Print a elements of array in [L,R]
+template <typename T> void print(T a[],int L,int R){cout << '[';for (int i=L;i<=R;++i){cout << a[i];if (i<R) cout << ',';}cout << ']';}
+
+void file(const string& PATH){
+    freopen((PATH+".inp").c_str(),"r",stdin);
+    freopen((PATH+".out").c_str(),"w",stdout);
+}
+ll n,q;
+
+ll getNum(ll n,ll x,ll y){
+    if (n==1){
+        if(x==1&&y==1)  return 1;
+        if (x==2&&y==2) return 2;
+        if (x==2&&y==1) return 3;
+        if (x==1&&y==2) return 4;
+    }
+
+    ll side = (1LL << (n-1));
+    ll blockSize = side*side;
+
+    if (x <= side && y <= side){
+        return getNum(n-1,x,y);
+    }
+    else if(x > side && y > side){
+        return blockSize + getNum(n-1,x-side,y-side);
+    }
+    else if (x > side && y <= side){
+        return 2*blockSize + getNum(n-1,x-side,y);
+    }
+    else{
+        return 3*blockSize + getNum(n-1,x,y-side);
+    }
+}
+
+ii getCor(ll n,ll num){
+    if (n==1){
+        if (num==1) return {1,1};
+        if (num==2) return {2,2};
+        if (num==3) return {2,1};
+        if (num==4) return {1,2};
+    }
+
+    ll side = (1LL << (n-1));
+    ll blockSize = (side*side);
+
+    if (num <= blockSize) return getCor(n-1,num);
+    else if (num <= 2*blockSize){
+        ii p = getCor(n-1,num-blockSize);
+        return {p.fi + side,p.se + side};
+    }
+    else if (num <= 3*blockSize){
+        ii p = getCor(n-1,num-2*blockSize);
+        return {p.fi+side,p.se};
+    }
+    else{
+        ii p = getCor(n-1,num-3*blockSize);
+        return {p.fi,p.se+side};
+    }
+}
+
+void solve(){
+    cin >> n >> q;
+    //cout << n << ' ' << q << '\n';
+    char a,b;
+    ll x,y;
+    while (q--){
+        cin >> a >> b;
+        //cout << a << b << ' ' << x << ' ' << y << '\n';
+        if (a=='-'&&b=='>'){
+            cin >> x >> y;
+            cout << getNum(n,x,y) << '\n';
+        }
+        else{
+            cin >> x;
+            cout << getCor(n,x).fi << ' ' << getCor(n,x).se << '\n';
+        }
+    }
+}
+
+int main(){
+    ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    ll t = 1;
+    cin >> t;
+    for (int i = 1;i <= t;++i){
+        solve();
+    }
+    return 0;
+}

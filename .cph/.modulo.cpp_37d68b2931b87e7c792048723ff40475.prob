@@ -1,0 +1,1 @@
+{"name":"Local: modulo","url":"d:\\code_and_study\\DUT\\Math_for_CS\\modulo.cpp","tests":[{"id":1739486485815,"input":"53 3 113\n3\n3 4 2\n113 11 3","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\code_and_study\\DUT\\Math_for_CS\\modulo.cpp","group":"local","local":true}
