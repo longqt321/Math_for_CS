@@ -1,1 +1,2 @@
 **/*.exe
+**/eigen-3.4.0/git rm -r --cached **/eigen-3.4.0
